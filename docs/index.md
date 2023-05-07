@@ -7,9 +7,9 @@
 You can use CEMU for:
 
 - Differential Test with CPU RTL with [SoC-simulator](https://github.com/cyyself/soc-simulator)
-- Developing new ISA-level extension
+- Develop new ISA-level extension
 - Define your own performance counter and tracer for software workload exploration
-- Developing a simple CPU and bus performance model
+- Develop a simple CPU and bus performance model
 
 ## ISA Support
 

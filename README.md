@@ -2,7 +2,7 @@
 
 Documentation for [CEMU](https://github.com/cyyself/cemu)
 
-## How to writing?
+## How to write?
 
 Environment Setup:
 
