@@ -16,7 +16,7 @@ plugins:
   - material-relative-language-selector
   - git-revision-date-localized:
       fallback_to_build_date: true
-      locale: zh
+      locale: en
   - git-authors:
       show_contribution: true
       show_line_count: true
