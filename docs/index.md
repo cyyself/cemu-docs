@@ -32,3 +32,7 @@ You can use CEMU for:
 - Xilinx AXI EthernetLite (Without ping-pong buffer and MDIO)
 - RISC-V CLINT
 - RISC-V PLIC
+
+## Some talks about CEMU
+
+- [重庆大学陈泱宇：SoC-Simulator——一个简单易用的软件定义AXI Slave设备框架](https://www.bilibili.com/video/BV1bd4y1R72j/?t=299)
