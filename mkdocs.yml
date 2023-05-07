@@ -9,6 +9,8 @@ theme:
   language: en
 nav:
   - Home: index.md
+  - MIPS:
+    - Setup: mips/setup.md
 plugins:
   - search
   - material-relative-language-selector
