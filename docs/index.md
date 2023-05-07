@@ -5,6 +5,7 @@
 [CEMU](https://github.com/cyyself/cemu) is a full system emulator **framework** designed to easily change all aspects in a simple CPU and SoC for education and research purposes.
 
 You can use CEMU for:
+
 - Differential Test with CPU RTL with [SoC-simulator](https://github.com/cyyself/soc-simulator)
 - Developing new ISA-level extension
 - Define your own performance counter and tracer for software workload exploration
