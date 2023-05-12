@@ -11,6 +11,8 @@ nav:
   - Home: index.md
   - MIPS:
     - Setup: mips/setup.md
+  - La32r:
+    - Setup: la32r/setup.md
 plugins:
   - search
   - material-relative-language-selector
