@@ -121,7 +121,7 @@ int main(int argc, const char* argv[]) {
 }
 ```
 
-```bash
+```console
 # at cemu project folder
 make
 ./cemu
@@ -195,7 +195,7 @@ popd
 ### Build Linux Kernel
 
 ```bash
-git clone https://github.com/cyyself/linux.git -b nscscc_cdim
+git clone https://github.com/cyyself/linux.git -b cdim_soc
 pushd linux
     make ARCH=mips CROSS_COMPILE=mipsel-unknown-linux-gnu- cdim_defconfig
     # Disable axi intc and axi emaclite in device-tree
@@ -290,7 +290,7 @@ int main(int argc, const char* argv[]) {
 }
 ```
 
-```bash
+```console
 # at cemu project folder
 make
 ./cemu                                                                             
