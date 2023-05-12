@@ -6,12 +6,15 @@ Documentation for [CEMU](https://github.com/cyyself/cemu)
 
 Environment Setup:
 
-```bash
-pip3 install -r requirements.txt --break-system-packages
+```console
+$ python -m venv venv
+$ . venv/bin/activate
+$ pip install -U pip wheel setuptools
+$ pip install -r requirements.txt
 ```
 
-Preview:
+Preview the docs:
 
-```bash
-python3 -m mkdocs serve
+```console
+$ mkdocs serve  # make sure you have executed `. venv/bin/activate` first
 ```
