@@ -228,6 +228,7 @@ bash ./scripts/init_cdim.sh
 - `-func` NSCSCC Functional Test
 - `-perf` NSCSCC Performance Test
 - `-sys`  NSCSCC System Test
+
     Note: You may need `socat` or `nc` to convert stdio to TCP socket.
     Example:
     ```bash
@@ -235,6 +236,7 @@ bash ./scripts/init_cdim.sh
     cd ../supervisor-mips32/term/
     GCCPREFIX=mipsel-unknown-linux-gnu- python3 term.py -t 127.0.0.1:6666
     ```
+    
 - `-linux` Run Linux
 - `-ucore` Run uCore
 - `-uboot` Run U-Boot
