@@ -11,6 +11,7 @@ nav:
   - Home: index.md
   - MIPS:
     - Setup: mips/setup.md
+    - Differential Test in NSCSCC: mips/difftest-nscscc.md
   - La32r:
     - Setup: la32r/setup.md
 plugins:
