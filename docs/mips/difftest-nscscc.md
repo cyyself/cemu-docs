@@ -392,7 +392,7 @@ Please press Enter to activate this console.
 ./obj_dir/Vmycpu_top -linux -nodiff -axifast
 ```
 
-You will get the same output as above, but you will get about 40% performance improvement compared to above.
+You will get the same output as above but different in times because of AXI latency, you will get about 40% performance improvement compared to above.
 
 - Performance Test
 
