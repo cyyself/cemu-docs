@@ -264,7 +264,7 @@ bash ./scripts/init_cdim.sh
 
 !!! Note
 
-    All the waveforms will be saved to `trace.vcd`.
+    All the waveforms will be saved to `trace.fst`.
 
 #### Arguments for Performance Test Only
 
