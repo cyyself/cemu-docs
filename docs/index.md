@@ -36,3 +36,4 @@ You can use CEMU for:
 ## Some talks about CEMU
 
 - [重庆大学陈泱宇：SoC-Simulator——一个简单易用的软件定义AXI Slave设备框架](https://www.bilibili.com/video/BV1bd4y1R72j/?t=299)
+- [2023年“龙芯杯”第二次培训](https://www.bilibili.com/video/BV11h411w7VU)
