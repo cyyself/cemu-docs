@@ -1,0 +1,1230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../setup/">
+      
+      
+        <link rel="next" href="../../la32r/setup/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Differential Test in NSCSCC - CEMU Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#differential-test-in-nscscc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CEMU Documentation" class="md-header__button md-logo" aria-label="CEMU Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6V9Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CEMU Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Differential Test in NSCSCC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/cyyself/cemu-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cemu-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../setup/" class="md-tabs__link md-tabs__link--active">
+        MIPS
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../la32r/setup/" class="md-tabs__link">
+        La32r
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CEMU Documentation" class="md-nav__button md-logo" aria-label="CEMU Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6V9Z"/></svg>
+
+    </a>
+    CEMU Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/cyyself/cemu-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cemu-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          MIPS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          MIPS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Differential Test in NSCSCC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Differential Test in NSCSCC
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-usage-for-function-test-and-performance-test" class="md-nav__link">
+    Simple usage for function test and performance test
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple usage for function test and performance test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-cemu-and-soc-simulator-dial-with-different-counter-value-in-differential-performance-test" class="md-nav__link">
+    How does CEMU and SoC-Simulator dial with different counter value in differential performance test?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-test-when-running-operating-systems" class="md-nav__link">
+    Differential Test when running operating systems
+  </a>
+  
+    <nav class="md-nav" aria-label="Differential Test when running operating systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-debug-signals" class="md-nav__link">
+    Adding debug signals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-soc-simulator-and-running" class="md-nav__link">
+    Get SoC-Simulator and Running
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-arguments" class="md-nav__link">
+    Running Arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-mode" class="md-nav__link">
+    Running Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arguments-for-performance-test-only" class="md-nav__link">
+    Arguments for Performance Test Only
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyboard-function-when-running-mode-is-not-func-and-perf" class="md-nav__link">
+    Keyboard function when running mode is not func and perf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          La32r
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          La32r
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../la32r/setup/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-usage-for-function-test-and-performance-test" class="md-nav__link">
+    Simple usage for function test and performance test
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple usage for function test and performance test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-cemu-and-soc-simulator-dial-with-different-counter-value-in-differential-performance-test" class="md-nav__link">
+    How does CEMU and SoC-Simulator dial with different counter value in differential performance test?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-test-when-running-operating-systems" class="md-nav__link">
+    Differential Test when running operating systems
+  </a>
+  
+    <nav class="md-nav" aria-label="Differential Test when running operating systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-debug-signals" class="md-nav__link">
+    Adding debug signals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-soc-simulator-and-running" class="md-nav__link">
+    Get SoC-Simulator and Running
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-arguments" class="md-nav__link">
+    Running Arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-mode" class="md-nav__link">
+    Running Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arguments-for-performance-test-only" class="md-nav__link">
+    Arguments for Performance Test Only
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyboard-function-when-running-mode-is-not-func-and-perf" class="md-nav__link">
+    Keyboard function when running mode is not func and perf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="differential-test-in-nscscc">Differential Test in NSCSCC<a class="headerlink" href="#differential-test-in-nscscc" title="Permanent link">&para;</a></h1>
+<p><a href="http://www.nscscc.com/">The CPU design track of the National Student Computer System Capability Challenge (NSCSCC)</a>, also known as the "Loongson Cup" (“龙芯杯” in Chinese) is a competition for college students in China.</p>
+<p>We can use CEMU with <a href="https://github.com/cyyself/soc-simulator/">SoC-Simulator</a> to help the competitors in various way, such as:</p>
+<ul>
+<li>Much faster simulation speed compared to Vivado</li>
+<li>Differential Test when running Linux / uCore</li>
+<li>Add some performance counter in software to profile the performance</li>
+</ul>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p><a href="https://verilator.org/guide/latest/install.html">Verilator</a> &gt;= v4.2</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note for Debian/Ubuntu Users:
+If your Ubuntu version &lt; 23.04(lunar) or Debian version &lt; 12(bookworm), you can <strong>NOT</strong> install verilator directly through <code>apt install verilator</code>, the verilator in offcial repo of your distro is too old that can not build soc-simulator.</p>
+</div>
+<h2 id="simple-usage-for-function-test-and-performance-test">Simple usage for function test and performance test<a class="headerlink" href="#simple-usage-for-function-test-and-performance-test" title="Permanent link">&para;</a></h2>
+<p>If you only need to speed up NSCSCC function test and performance test using <a href="https://github.com/verilator/verilator">Verilator</a> instead of Vivado, you can use the <a href="https://github.com/CQU-CS-LABs/CO-lab-material-CQU/tree/2022/verilator">Lab Package from Chongqing University Computer Organization Course - Integrated Hardware Design</a>. </p>
+<p>And we also have the tutorial video on <a href="https://www.bilibili.com/video/BV19G4y1E7jj/">bilibili</a>.</p>
+<p>Both the README in the package and the video are in Chinese.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have modified the function test in the lab package as we use 7a100t FPGA(Diligent Nexys4 DDR) for the Lab course instead of 7a200t in NSCSCC, and the BRAM resource is very limited in 7a100t, so the function test in the CQU lab package will be slightly different on memory layout from the function test in nscscc-group package.</p>
+<p>You can replace the files in the <code>vivado/func_test_v0.01/soft/</code> in our package if you want to test your CPU RTL with the original function test from nscscc, which will not affect the verilator framework.</p>
+</div>
+<h3 id="how-does-cemu-and-soc-simulator-dial-with-different-counter-value-in-differential-performance-test">How does CEMU and SoC-Simulator dial with different counter value in differential performance test?<a class="headerlink" href="#how-does-cemu-and-soc-simulator-dial-with-different-counter-value-in-differential-performance-test" title="Permanent link">&para;</a></h3>
+<p>The performance test will read 2 performance counter:</p>
+<ul>
+<li>CP0.count</li>
+<li>CONFREG.timer</li>
+</ul>
+<p>We have <code>debug_wb_is_timer</code> flag in CEMU, it will be reset to false at every step one instruction, then if the instruction load the CONFREG.timer in kseg1 or executed mfc0 to load CP0.counter, this flag will set to true to tell the diffential test function that the value may different between RTL and CEMU, so the differetial test function will call CEMU to update the GPR commit value from CPU RTL and thus we will have the same value.</p>
+<details class="code">
+<summary>Code</summary>
+<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/src/core/mips/mips_core.hpp b/src/core/mips/mips_core.hpp</span>
+<span class="gh">index 4321630..bea2270 100644</span>
+<span class="gd">--- a/src/core/mips/mips_core.hpp</span>
+<span class="gi">+++ b/src/core/mips/mips_core.hpp</span>
+<span class="gu">@@ -46,6 +46,7 @@ public:</span>
+<span class="w"> </span>       debug_wb_wen = 0;
+<span class="w"> </span>       debug_wb_wnum = 0;
+<span class="w"> </span>       debug_wb_wdata = 0;
+<span class="gi">+        debug_wb_is_timer = 0;</span>
+<span class="w"> </span>       j_cnt = 0;
+<span class="w"> </span>       forward_branch = 0;
+<span class="w"> </span>       forward_branch_taken = 0;
+<span class="gu">@@ -76,6 +77,7 @@ public:</span>
+<span class="w"> </span>   uint8_t  debug_wb_wen;
+<span class="w"> </span>   uint8_t  debug_wb_wnum;
+<span class="w"> </span>   uint32_t debug_wb_wdata;
+<span class="gi">+    bool     debug_wb_is_timer;</span>
+<span class="w"> </span>   std::queue &lt;uint32_t&gt; pc_trace;
+<span class="w"> </span>   std::set &lt;uint32_t&gt; cache_op;
+<span class="w"> </span>   // TODO: trace with exceptions (add exception signal at commit stage is need)
+<span class="gu">@@ -91,6 +93,7 @@ private:</span>
+<span class="w"> </span>       debug_wb_wen = 0;
+<span class="w"> </span>       debug_wb_wnum = 0;
+<span class="w"> </span>       debug_wb_wdata = 0;
+<span class="gi">+        debug_wb_is_timer = false;</span>
+<span class="w"> </span>       mips_instr instr;
+<span class="w"> </span>       mips32_exccode if_exc = EXC_OK;
+<span class="w"> </span>       pc_trace.push(pc);
+<span class="gu">@@ -727,6 +730,7 @@ private:</span>
+<span class="w"> </span>               // LW
+<span class="w"> </span>               uint32_t vaddr = GPR[instr.i_type.rs] + instr.i_type.imm;
+<span class="w"> </span>               uint32_t buf;
+<span class="gi">+                if (vaddr == 0xbfafe000u) debug_wb_is_timer = true; // for difftest</span>
+<span class="w"> </span>               mips32_exccode stat = mmu.va_read(vaddr, 4, (unsigned char*)&amp;buf, cp0.get_ksu(), cp0.get_asid(), tlb_invalid);
+<span class="w"> </span>               if (stat != EXC_OK) cp0.raise_trap(stat, vaddr, tlb_invalid);
+<span class="w"> </span>               else set_GPR(instr.i_type.rt, buf);
+<span class="gu">@@ -870,6 +874,7 @@ private:</span>
+<span class="w"> </span>                   switch (instr.r_type.rs) {
+<span class="w"> </span>                       case RS_MFC0: {
+<span class="w"> </span>                           // MFC0
+<span class="gi">+                            if (instr.r_type.rd == RD_COUNT &amp;&amp; (instr.r_type.funct &amp; 0b111) == 0) debug_wb_is_timer = true; // for difftest</span>
+<span class="w"> </span>                           set_GPR(instr.r_type.rt, cp0.mfc0(instr.r_type.rd, instr.r_type.funct&amp;0b111));
+<span class="w"> </span>                           break;
+<span class="w"> </span>                       }
+<span class="gu">@@ -927,6 +932,7 @@ private:</span>
+<span class="w"> </span>               // LL as LW
+<span class="w"> </span>               uint32_t vaddr = GPR[instr.i_type.rs] + instr.i_type.imm;
+<span class="w"> </span>               uint32_t buf;
+<span class="gi">+                if (vaddr == 0xbfafe000u) debug_wb_is_timer = true; // for difftest</span>
+<span class="w"> </span>               mips32_exccode stat = mmu.va_read(vaddr, 4, (unsigned char*)&amp;buf, cp0.get_ksu(), cp0.get_asid(), tlb_invalid);
+<span class="w"> </span>               if (stat != EXC_OK) cp0.raise_trap(stat, vaddr, tlb_invalid);
+<span class="w"> </span>               else set_GPR(instr.i_type.rt, buf);
+</code></pre></div>
+</details>
+<h2 id="differential-test-when-running-operating-systems">Differential Test when running operating systems<a class="headerlink" href="#differential-test-when-running-operating-systems" title="Permanent link">&para;</a></h2>
+<h3 id="adding-debug-signals">Adding debug signals<a class="headerlink" href="#adding-debug-signals" title="Permanent link">&para;</a></h3>
+<p>Originally, NSCSCC provide the following debug signals:</p>
+<div class="highlight"><pre><span></span><code><span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_pc</span><span class="p">,</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_rf_wen</span><span class="p">,</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_rf_wnum</span><span class="p">,</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_rf_wdata</span><span class="p">,</span>
+</code></pre></div>
+<details class="note">
+<summary>Note</summary>
+<p>With the help of the <strong>open_trace</strong> flag in <strong>NSCSCC confreg</strong> to turn off the trace when the CPU behavior is different with golden trace but acceptable (such as CP0.status.BD in n77 software interrupt test), it will be easy to allow different behavior if the different GPR write data will only be propagated in a very limited range in control flow.</p>
+<p>However, the operating systems are much more complex than the function test because they will have timer interrupts. Although the emulator should know the accurate cycle to generate an interrupt, the CPU may not interrupt immediately.</p>
+<p>For example, <a href="https://github.com/Maxpicca-Li/CDIM">CQU Dual Issue Machine</a> is a dual-issue five-stage pipeline processor which binds interrupts to a specific PC at the 2<sup>nd</sup> stage(decode). However, the interrupt will raise at the 4<sup>th</sup> stage(memory), so it will have at least 2 more instruction being executed after the interrupt signal fired, thus will have different behavior between emulator and CPU RTL.</p>
+<p>This behavior is called asynchronous interrupt, which is allowed in almost every ISA.</p>
+<p>Moreover, MIPS introduces TLBWR (TLB write random) instruction, and which entry in TLB to write depends on the value of CP0.random. However, the differential test can not directly know the value in CP0.random and when the CP0.random value is taken for TLBWR instruction though this behavior is CPU implementation dependent. Thus will have different TLB states between the emulator and CPU RTL.</p>
+<p>Here comes a challenge: How to differential test when interrupts are on and trace the TLB random write?</p>
+<p>To solve the interrupt synchonize problem, <a href="https://github.com/cyyself/soc-simulator">SoC-Simulator</a> adds two additional debug signals of a specific PC in insturction commit trace, which are CP0.cause value and whether the interrupt fired. </p>
+<div class="highlight"><pre><span></span><code><span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_cp0_cause</span><span class="p">,</span><span class="w"> </span><span class="c1">// CP0.cause</span>
+<span class="k">output</span><span class="w">          </span><span class="n">debug_int</span><span class="w"> </span><span class="c1">// whether the interrupt fired</span>
+</code></pre></div>
+<p>In this case, differential test can be implemented in the following way (pseudocode):</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// main loop</span>
+<span class="w">    </span><span class="n">RTL</span><span class="p">.</span><span class="n">step_one_instruction</span><span class="p">();</span>
+<span class="w">    </span><span class="n">CEMU</span><span class="p">.</span><span class="n">import_diff_test_info</span><span class="p">(</span><span class="n">RTL</span><span class="p">.</span><span class="n">debug_cp0_cause</span><span class="p">,</span><span class="w"> </span><span class="n">RTL</span><span class="p">.</span><span class="n">debug_int</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// CEMU will take the cp0 cause value to update its CSR.</span>
+<span class="w">    </span><span class="c1">// And it will only raise interrupt when RTL.debug_int is 1.</span>
+<span class="w">    </span><span class="n">CEMU</span><span class="p">.</span><span class="n">step_one_instructino</span><span class="p">();</span>
+<span class="w">    </span><span class="n">compare_commit_result</span><span class="p">(</span><span class="n">RTL</span><span class="p">,</span><span class="w"> </span><span class="n">CEMU</span><span class="p">);</span><span class="w"> </span><span class="c1">// check RTL behavior</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Since it will only have unpredictable behavior in TLBWR among all TLB behavior, what emulator should do is simply taken the CP0.random value used for executing TLBWR.</p>
+<div class="highlight"><pre><span></span><code><span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">debug_cp0_ramdom</span>
+</code></pre></div>
+</details>
+<p>SoC-Simulator extended the debug signals to:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// nscscc debug interface</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_pc</span><span class="p">,</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_rf_wen</span><span class="p">,</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_rf_wnum</span><span class="p">,</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_wb_rf_wdata</span><span class="p">,</span>
+<span class="c1">// soc-simulator + cemu debug interface</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_cp0_ramdom</span><span class="p">,</span><span class="c1">// cp0_random used in TLBWR</span>
+<span class="k">output</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">debug_cp0_cause</span><span class="p">,</span><span class="w"> </span><span class="c1">// cp0_cause for rising interrupts and mfc0</span>
+<span class="k">output</span><span class="w">          </span><span class="n">debug_int</span><span class="p">,</span><span class="w">       </span>
+<span class="k">output</span><span class="w">          </span><span class="n">debug_commit</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is worth noting that if the instruction is going to interrupt, the CPU RTL should also assert <code>debug_commit</code> to tell the SoC-Simulator that this instruction is retired even though it will not commit the GPR, and we should <strong>NOT</strong> assert <code>debug_wb_rf_wen</code> though the this instruction will not commit to GPR.</p>
+<p>And the CPU RTL should <strong>NOT</strong> assert the <code>debug_wb_rf_wen</code> and <code>debug_commit</code> during pipeline stall.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Additionally, SoC-Simulator also support commit GPR on both the rising and falling edges of the clock signal, which is <code>both_edge_commit</code> defines in <code>sim_mycpu.cpp</code>, it will be convient for superscalar CPU which commit width is 2.</p>
+<p>If your CPU does not support it, you should manually <strong>turn off</strong> it by replace <code>bool both_edge_commit = true;</code> with <code>bool both_edge_commit = false;</code>.</p>
+</div>
+<h3 id="get-soc-simulator-and-running">Get SoC-Simulator and Running<a class="headerlink" href="#get-soc-simulator-and-running" title="Permanent link">&para;</a></h3>
+<p>Assume you are in a folder like this:</p>
+<div class="highlight"><pre><span></span><code><span class="go">.</span>
+<span class="go">├── linux</span>
+<span class="go">├── nscscc-group # You can get from nscscc.com</span>
+<span class="go">├── supervisor-mips32 # </span>
+<span class="go">├── u-boot # you can get from `git clone</span>
+<span class="go">└── ucore-thumips # compiled in setup.md</span>
+</code></pre></div>
+<p>How to get these subfolders:</p>
+<ul>
+<li>linux: build from <a href="../setup/">setup.md</a></li>
+<li>ucore-thumips: build from <a href="../setup/">setup.md</a></li>
+<li>nscscc-group: From NSCSCC 2022 group package (<a href="http://www.nscscc.com">www.nscscc.com</a>)</li>
+<li>supervisor-mips32
+    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/supervisor-mips32.git<span class="w"> </span>-b<span class="w"> </span>nscscc
+<span class="nb">cd</span><span class="w"> </span>supervisor-mips32/kernel
+make<span class="w"> </span><span class="nv">GCCPREFIX</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span>
+</code></pre></div></li>
+<li>u-boot
+    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/u-boot.git<span class="w"> </span>-b<span class="w"> </span>cdim_soc
+<span class="nb">cd</span><span class="w"> </span>u-boot
+make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>mips<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>cdim_defconfig
+make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>mips<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span>
+</code></pre></div></li>
+</ul>
+<p>Then, get soc-simulator:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/soc-simulator.git
+<span class="nb">cd</span><span class="w"> </span>soc-simulator
+bash<span class="w"> </span>./scripts/init_cdim.sh
+<span class="c1"># If you dont want CDIM, you can use</span>
+<span class="c1"># bash ./scripts/init_nscscc.sh</span>
+<span class="c1"># Then, change the CPU source file path in Makefile</span>
+</code></pre></div>
+<h3 id="running-arguments">Running Arguments<a class="headerlink" href="#running-arguments" title="Permanent link">&para;</a></h3>
+<h4 id="running-mode">Running Mode<a class="headerlink" href="#running-mode" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>-func</code> NSCSCC Functional Test</li>
+<li><code>-perf</code> NSCSCC Performance Test</li>
+<li>
+<p><code>-sys</code>  NSCSCC System Test</p>
+<p>Note: You may need <code>socat</code> or <code>nc</code> to convert stdio to TCP socket.
+Example:
+<div class="highlight"><pre><span></span><code>socat<span class="w"> </span>tcp-listen:6666,reuseaddr<span class="w"> </span>exec:<span class="s1">&#39;./obj_dir/Vmycpu_top -sys&#39;</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="nb">cd</span><span class="w"> </span>../supervisor-mips32/term/
+<span class="nv">GCCPREFIX</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>python3<span class="w"> </span>term.py<span class="w"> </span>-t<span class="w"> </span><span class="m">127</span>.0.0.1:6666
+</code></pre></div></p>
+</li>
+<li>
+<p><code>-linux</code> Run Linux</p>
+</li>
+<li><code>-ucore</code> Run uCore</li>
+<li><code>-uboot</code> Run U-Boot</li>
+</ul>
+<h4 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>-axifast</code> Turn off AXI Latency</p>
+<p>We have explored the latency to approach the performance test.</p>
+<p>Turning it off will not significantly improve performance if your CPU has a Cache.</p>
+</li>
+<li>
+<p><code>-nodiff</code> Turn off diffential Test.</p>
+<p>It will be useful when your CPU behavior at the ISA level is different from CEMU but acceptable, you can check the behaviors of software in this mode.</p>
+</li>
+<li>
+<p><code>-trace [time]</code> Turn on trace at start and set the trace time (in ticks, which is double of cycles).</p>
+</li>
+<li>
+<p><code>-starttrace [time]</code> Set trace start time.</p>
+<p>By default, it will recode the waveform from this time to this time + 1000 ticks.</p>
+</li>
+<li>
+<p><code>-pc</code> Print PC every time.</p>
+</li>
+<li>
+<p><code>-diffmem</code> Differential Test AXI Memory Write (For Cache Debug).</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the waveforms will be saved to <code>trace.fst</code>.</p>
+</div>
+<h4 id="arguments-for-performance-test-only">Arguments for Performance Test Only<a class="headerlink" href="#arguments-for-performance-test-only" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>-perfonce</code>: Run every performance test only once.</p>
+<p>Every test will run for 10 times by default.</p>
+</li>
+<li>
+<p><code>-uart</code>: Output confreg UART</p>
+<p>You will see how the performance test is going.</p>
+</li>
+<li>
+<p><code>-diffuart</code>: Differential Test confreg UART</p>
+<p>For MMIO Debug.</p>
+</li>
+<li>
+<p><code>-stat</code>: Output statistic result</p>
+</li>
+</ul>
+<h4 id="keyboard-function-when-running-mode-is-not-func-and-perf">Keyboard function when running mode is not func and perf<a class="headerlink" href="#keyboard-function-when-running-mode-is-not-func-and-perf" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>Ctrl</code> + <code>i</code>: Print Current PC (Program Counter)</p>
+</li>
+<li>
+<p><code>Ctrl</code> + <code>t</code>: recode waveform from current time to current time + 1000 ticks.</p>
+</li>
+</ul>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Linux run with differential test:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="go">./obj_dir/Vmycpu_top -linux</span>
+<span class="go">[    0.000000] Linux version 6.3.0-13467-g63f399f0f695-dirty (cyy@cyy-pc) (mipsel-unknown-linux-gnu-gcc (crosstool-NG 1.25.0.166_9433647) 12.2.0, GNU ld (crosstool-NG 1.25.0.166_9433647) 2.40) #25 Mon May 15 00:25:31 CST 2023</span>
+<span class="go">[    0.000000] printk: bootconsole [early0] enabled</span>
+<span class="go">[    0.000000] CPU0 revision is: 00018003 (MIPS 4Kc)</span>
+<span class="go">[    0.000000] MIPS: machine is nscscc,CQU_Dual_Issue_Machine</span>
+<span class="go">[    0.000000] earlycon: ns16550a0 at MMIO 0x1fe40000 (options &#39;&#39;)</span>
+<span class="go">[    0.000000] printk: bootconsole [ns16550a0] enabled</span>
+<span class="go">[    0.000000] Initrd not found or empty - disabling initrd</span>
+<span class="go">[    0.000000] Primary instruction cache 8kB, VIPT, 2-way, linesize 64 bytes.</span>
+<span class="go">[    0.000000] Primary data cache 8kB, 2-way, VIPT, no aliases, linesize 64 bytes</span>
+<span class="go">[    0.000000] Zone ranges:</span>
+<span class="go">[    0.000000]   Normal   [mem 0x0000000000000000-0x0000000007ffffff]</span>
+<span class="go">[    0.000000] Movable zone start for each node</span>
+<span class="go">[    0.000000] Early memory node ranges</span>
+<span class="go">[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000007ffffff]</span>
+<span class="go">[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x0000000007ffffff]</span>
+<span class="go">[    0.000000] Kernel command line: console=ttyS0,115200n8 rdinit=/sbin/init earlycon</span>
+<span class="go">[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes, linear)</span>
+<span class="go">[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes, linear)</span>
+<span class="go">[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 32480</span>
+<span class="go">[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off</span>
+<span class="go">[    0.000000] Memory: 117968K/131072K available (7347K kernel code, 620K rwdata, 1124K rodata, 2484K init, 216K bss, 13104K reserved, 0K cma-reserved)</span>
+<span class="go">[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1</span>
+<span class="go">[    0.000000] NR_IRQS: 256</span>
+<span class="go">[    0.000000] arch_init_irq with ebase: 0x80000000</span>
+<span class="go">[    0.000000] clocksource: MIPS: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 57337813970 ns</span>
+<span class="go">[    0.000022] sched_clock: 32 bits at 33MHz, resolution 30ns, wraps every 64424509936ns</span>
+<span class="go">[    0.002330] Console: colour dummy device 80x25</span>
+<span class="go">[    0.003456] Calibrating delay loop... 65.79 BogoMIPS (lpj=131584)</span>
+<span class="go">[    0.045612] pid_max: default: 32768 minimum: 301</span>
+<span class="go">[    0.050073] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.050854] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.084261] cblist_init_generic: Setting adjustable number of callback queues.</span>
+<span class="go">[    0.084859] cblist_init_generic: Setting shift to 0 and lim to 1.</span>
+<span class="go">[    0.097443] devtmpfs: initialized</span>
+<span class="go">[    0.132962] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns</span>
+<span class="go">[    0.134126] futex hash table entries: 256 (order: -1, 3072 bytes, linear)</span>
+<span class="go">[    0.158071] NET: Registered PF_NETLINK/PF_ROUTE protocol family</span>
+<span class="go">[    0.227071] SCSI subsystem initialized</span>
+<span class="go">[    0.232633] pps_core: LinuxPPS API ver. 1 registered</span>
+<span class="go">[    0.233502] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti &lt;giometti@linux.it&gt;</span>
+<span class="go">[    0.234564] PTP clock support registered</span>
+<span class="go">[    0.251011] clocksource: Switched to clocksource MIPS</span>
+<span class="go">[    0.527496] NET: Registered PF_INET protocol family</span>
+<span class="go">[    0.532125] IP idents hash table entries: 2048 (order: 2, 16384 bytes, linear)</span>
+<span class="go">[    0.541770] tcp_listen_portaddr_hash hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.542758] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)</span>
+<span class="go">[    0.543920] TCP established hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.544806] TCP bind hash table entries: 1024 (order: 1, 8192 bytes, linear)</span>
+<span class="go">[    0.545774] TCP: Hash tables configured (established 1024 bind 1024)</span>
+<span class="go">[    0.547945] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.548856] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.552318] NET: Registered PF_UNIX/PF_LOCAL protocol family</span>
+<span class="go">[    0.561463] RPC: Registered named UNIX socket transport module.</span>
+<span class="go">[    0.562018] RPC: Registered udp transport module.</span>
+<span class="go">[    0.562506] RPC: Registered tcp transport module.</span>
+<span class="go">[    0.563332] RPC: Registered tcp NFSv4.1 backchannel transport module.</span>
+<span class="go">[    0.597632] workingset: timestamp_bits=14 max_order=15 bucket_order=1</span>
+<span class="go">[    0.642610] NFS: Registering the id_resolver key type</span>
+<span class="go">[    0.644141] Key type id_resolver registered</span>
+<span class="go">[    0.644644] Key type id_legacy registered</span>
+<span class="go">[    0.645673] nfs4filelayout_init: NFSv4 File Layout Driver Registering...</span>
+<span class="go">[    0.646263] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...</span>
+<span class="go">[    0.647589] fuse: init (API version 7.38)</span>
+<span class="go">[    0.677156] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)</span>
+<span class="go">[    0.677799] io scheduler mq-deadline registered</span>
+<span class="go">[    0.678312] io scheduler kyber registered</span>
+<span class="go">[    3.392578] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled</span>
+<span class="go">[    3.455389] printk: console [ttyS0] disabled</span>
+<span class="go">[    3.456242] 1fe40000.serial: ttyS0 at MMIO 0x1fe40000 (irq = 3, base_baud = 6250000) is a 16550A</span>
+<span class="go">[    3.457318] printk: console [ttyS0] enabled</span>
+<span class="go">[    3.457318] printk: console [ttyS0] enabled</span>
+<span class="go">[    3.458046] printk: bootconsole [early0] disabled</span>
+<span class="go">[    3.458046] printk: bootconsole [early0] disabled</span>
+<span class="go">[    3.459564] printk: bootconsole [ns16550a0] disabled</span>
+<span class="go">[    3.459564] printk: bootconsole [ns16550a0] disabled</span>
+<span class="go">[    3.526708] NET: Registered PF_INET6 protocol family</span>
+<span class="go">[    3.594829] Segment Routing with IPv6</span>
+<span class="go">[    3.596981] In-situ OAM (IOAM) with IPv6</span>
+<span class="go">[    3.598494] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver</span>
+<span class="go">[    3.613067] NET: Registered PF_PACKET protocol family</span>
+<span class="go">[    3.615350] Key type dns_resolver registered</span>
+<span class="go">[    4.306439] Key type .fscrypt registered</span>
+<span class="go">[    4.306856] Key type fscrypt-provisioning registered</span>
+<span class="go">[    4.333894] clk: Disabling unused clocks</span>
+<span class="go">[    4.944821] Freeing unused kernel image (initmem) memory: 2484K</span>
+<span class="go">[    4.945250] This architecture does not have kernel memory protection.</span>
+<span class="go">[    4.945665] Run /sbin/init as init process</span>
+
+<span class="go">Please press Enter to activate this console. </span>
+<span class="go">~ # </span>
+</code></pre></div>
+<ul>
+<li>Linux run <strong>without</strong> differential test <strong>without</strong> AXI latency:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="go">./obj_dir/Vmycpu_top -linux -nodiff -axifast</span>
+</code></pre></div>
+<p>You will get the same output as above but different in times because of AXI latency, you will get about 40% performance improvement compared to above.</p>
+<ul>
+<li>Performance Test</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="go">./obj_dir/Vmycpu_top -perf          </span>
+<span class="go">1b654</span>
+<span class="go">befbc</span>
+<span class="go">1e1b06</span>
+<span class="go">15160f</span>
+<span class="go">44dc7</span>
+<span class="go">ccd6a</span>
+<span class="go">d570f</span>
+<span class="go">bc871</span>
+<span class="go">d7f9</span>
+<span class="go">9a10e</span>
+<span class="go">total ticks = 30948883</span>
+</code></pre></div>
+<p>Direct copy these lines to <code>IPC score calculation sheet</code> from nscscc final packge, you will get IPC score.</p>
+<ul>
+<li>Performance Test with statistics</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="go">./obj_dir/Vmycpu_top -perf -stat    </span>
+<span class="go">1b654</span>
+<span class="go">total_clk = 231658, stall_clk = 12545, has_commit = 198308, dual_commit = 131665, dual_issue_rate = 0.66394, IPC = 1.42440</span>
+<span class="go">confreg_read: 28, confreg_write: 502</span>
+<span class="go">befbc</span>
+<span class="go">total_clk = 1571488, stall_clk = 88514, has_commit = 1115394, dual_commit = 593678, dual_issue_rate = 0.53226, IPC = 1.08755</span>
+<span class="go">confreg_read: 8, confreg_write: 156</span>
+<span class="go">1e1b06</span>
+<span class="go">total_clk = 3952382, stall_clk = 608646, has_commit = 2581866, dual_commit = 1511853, dual_issue_rate = 0.58557, IPC = 1.03576</span>
+<span class="go">confreg_read: 28, confreg_write: 7915</span>
+<span class="go">15160f</span>
+<span class="go">total_clk = 2769825, stall_clk = 232059, has_commit = 1615358, dual_commit = 947307, dual_issue_rate = 0.58644, IPC = 0.92521</span>
+<span class="go">confreg_read: 8, confreg_write: 9592</span>
+<span class="go">44dc7</span>
+<span class="go">total_clk = 570600, stall_clk = 109159, has_commit = 341275, dual_commit = 147268, dual_issue_rate = 0.43152, IPC = 0.85619</span>
+<span class="go">confreg_read: 28, confreg_write: 17902</span>
+<span class="go">ccd6a</span>
+<span class="go">total_clk = 1685304, stall_clk = 164488, has_commit = 1177940, dual_commit = 535953, dual_issue_rate = 0.45499, IPC = 1.01696</span>
+<span class="go">confreg_read: 8, confreg_write: 152</span>
+<span class="go">d570f</span>
+<span class="go">total_clk = 1755581, stall_clk = 44135, has_commit = 1195724, dual_commit = 585725, dual_issue_rate = 0.48985, IPC = 1.01473</span>
+<span class="go">confreg_read: 8, confreg_write: 156</span>
+<span class="go">bc871</span>
+<span class="go">total_clk = 1550455, stall_clk = 83471, has_commit = 1094799, dual_commit = 657087, dual_issue_rate = 0.60019, IPC = 1.12992</span>
+<span class="go">confreg_read: 8, confreg_write: 2214</span>
+<span class="go">d7f9</span>
+<span class="go">total_clk = 117860, stall_clk = 10504, has_commit = 74013, dual_commit = 43755, dual_issue_rate = 0.59118, IPC = 0.99922</span>
+<span class="go">confreg_read: 8, confreg_write: 154</span>
+<span class="go">9a10e</span>
+<span class="go">total_clk = 1269288, stall_clk = 147152, has_commit = 857688, dual_commit = 331955, dual_issue_rate = 0.38703, IPC = 0.93725</span>
+<span class="go">confreg_read: 8, confreg_write: 32134</span>
+<span class="go">total ticks = 30948883</span>
+</code></pre></div>
+<ul>
+<li>Function Test</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="go">./obj_dir/Vmycpu_top -func                  </span>
+<span class="go">Number 1 Functional Test Point PASS!</span>
+<span class="go">Number 2 Functional Test Point PASS!</span>
+<span class="go">Number 3 Functional Test Point PASS!</span>
+<span class="go">Number 4 Functional Test Point PASS!</span>
+<span class="go">Number 5 Functional Test Point PASS!</span>
+<span class="go">Number 6 Functional Test Point PASS!</span>
+<span class="go">Number 7 Functional Test Point PASS!</span>
+<span class="go">Number 8 Functional Test Point PASS!</span>
+<span class="go">Number 9 Functional Test Point PASS!</span>
+<span class="go">Number 10 Functional Test Point PASS!</span>
+<span class="go">Number 11 Functional Test Point PASS!</span>
+<span class="go">Number 12 Functional Test Point PASS!</span>
+<span class="go">Number 13 Functional Test Point PASS!</span>
+<span class="go">Number 14 Functional Test Point PASS!</span>
+<span class="go">Number 15 Functional Test Point PASS!</span>
+<span class="go">Number 16 Functional Test Point PASS!</span>
+<span class="go">Number 17 Functional Test Point PASS!</span>
+<span class="go">Number 18 Functional Test Point PASS!</span>
+<span class="go">Number 19 Functional Test Point PASS!</span>
+<span class="go">Number 20 Functional Test Point PASS!</span>
+<span class="go">Number 21 Functional Test Point PASS!</span>
+<span class="go">Number 22 Functional Test Point PASS!</span>
+<span class="go">Number 23 Functional Test Point PASS!</span>
+<span class="go">Number 24 Functional Test Point PASS!</span>
+<span class="go">Number 25 Functional Test Point PASS!</span>
+<span class="go">Number 26 Functional Test Point PASS!</span>
+<span class="go">Number 27 Functional Test Point PASS!</span>
+<span class="go">Number 28 Functional Test Point PASS!</span>
+<span class="go">Number 29 Functional Test Point PASS!</span>
+<span class="go">Number 30 Functional Test Point PASS!</span>
+<span class="go">Number 31 Functional Test Point PASS!</span>
+<span class="go">Number 32 Functional Test Point PASS!</span>
+<span class="go">Number 33 Functional Test Point PASS!</span>
+<span class="go">Number 34 Functional Test Point PASS!</span>
+<span class="go">Number 35 Functional Test Point PASS!</span>
+<span class="go">Number 36 Functional Test Point PASS!</span>
+<span class="go">Number 37 Functional Test Point PASS!</span>
+<span class="go">Number 38 Functional Test Point PASS!</span>
+<span class="go">Number 39 Functional Test Point PASS!</span>
+<span class="go">Number 40 Functional Test Point PASS!</span>
+<span class="go">Number 41 Functional Test Point PASS!</span>
+<span class="go">Number 42 Functional Test Point PASS!</span>
+<span class="go">Number 43 Functional Test Point PASS!</span>
+<span class="go">Number 44 Functional Test Point PASS!</span>
+<span class="go">Number 45 Functional Test Point PASS!</span>
+<span class="go">Number 46 Functional Test Point PASS!</span>
+<span class="go">Number 47 Functional Test Point PASS!</span>
+<span class="go">Number 48 Functional Test Point PASS!</span>
+<span class="go">Number 49 Functional Test Point PASS!</span>
+<span class="go">Number 50 Functional Test Point PASS!</span>
+<span class="go">Number 51 Functional Test Point PASS!</span>
+<span class="go">Number 52 Functional Test Point PASS!</span>
+<span class="go">Number 53 Functional Test Point PASS!</span>
+<span class="go">Number 54 Functional Test Point PASS!</span>
+<span class="go">Number 55 Functional Test Point PASS!</span>
+<span class="go">Number 56 Functional Test Point PASS!</span>
+<span class="go">Number 57 Functional Test Point PASS!</span>
+<span class="go">Number 58 Functional Test Point PASS!</span>
+<span class="go">Number 59 Functional Test Point PASS!</span>
+<span class="go">Number 60 Functional Test Point PASS!</span>
+<span class="go">Number 61 Functional Test Point PASS!</span>
+<span class="go">Number 62 Functional Test Point PASS!</span>
+<span class="go">Number 63 Functional Test Point PASS!</span>
+<span class="go">Number 64 Functional Test Point PASS!</span>
+<span class="go">Number 65 Functional Test Point PASS!</span>
+<span class="go">Number 66 Functional Test Point PASS!</span>
+<span class="go">Number 67 Functional Test Point PASS!</span>
+<span class="go">Number 68 Functional Test Point PASS!</span>
+<span class="go">Number 69 Functional Test Point PASS!</span>
+<span class="go">Number 70 Functional Test Point PASS!</span>
+<span class="go">Number 71 Functional Test Point PASS!</span>
+<span class="go">Number 72 Functional Test Point PASS!</span>
+<span class="go">Number 73 Functional Test Point PASS!</span>
+<span class="go">Number 74 Functional Test Point PASS!</span>
+<span class="go">Number 75 Functional Test Point PASS!</span>
+<span class="go">Number 76 Functional Test Point PASS!</span>
+<span class="go">Number 77 Functional Test Point PASS!</span>
+<span class="go">Number 78 Functional Test Point PASS!</span>
+<span class="go">Number 79 Functional Test Point PASS!</span>
+<span class="go">Number 80 Functional Test Point PASS!</span>
+<span class="go">Number 81 Functional Test Point PASS!</span>
+<span class="go">Number 82 Functional Test Point PASS!</span>
+<span class="go">Number 83 Functional Test Point PASS!</span>
+<span class="go">Number 84 Functional Test Point PASS!</span>
+<span class="go">Number 85 Functional Test Point PASS!</span>
+<span class="go">Number 86 Functional Test Point PASS!</span>
+<span class="go">Number 87 Functional Test Point PASS!</span>
+<span class="go">Number 88 Functional Test Point PASS!</span>
+<span class="go">Number 89 Functional Test Point PASS!</span>
+</code></pre></div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 5, 2024</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      CC BY-SA 4.0.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+        <script src="../../assets/javascripts/mmrls.js"></script>
+      
+    
+  </body>
+</html>

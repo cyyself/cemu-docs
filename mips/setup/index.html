@@ -1,0 +1,963 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../difftest-nscscc/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Setup - CEMU Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mips-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CEMU Documentation" class="md-header__button md-logo" aria-label="CEMU Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6V9Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CEMU Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/cyyself/cemu-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cemu-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        MIPS
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../la32r/setup/" class="md-tabs__link">
+        La32r
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CEMU Documentation" class="md-nav__button md-logo" aria-label="CEMU Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6V9Z"/></svg>
+
+    </a>
+    CEMU Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/cyyself/cemu-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cemu-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          MIPS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          MIPS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Setup
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build-cross-compile-toolchains" class="md-nav__link">
+    Build cross-compile Toolchains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ucore-boot" class="md-nav__link">
+    uCore boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-boot" class="md-nav__link">
+    Linux boot
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-busybox-and-prepare-rootfs" class="md-nav__link">
+    Build Busybox and prepare rootfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-linux-kernel" class="md-nav__link">
+    Build Linux Kernel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../difftest-nscscc/" class="md-nav__link">
+        Differential Test in NSCSCC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          La32r
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          La32r
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../la32r/setup/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build-cross-compile-toolchains" class="md-nav__link">
+    Build cross-compile Toolchains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ucore-boot" class="md-nav__link">
+    uCore boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-boot" class="md-nav__link">
+    Linux boot
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-busybox-and-prepare-rootfs" class="md-nav__link">
+    Build Busybox and prepare rootfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-linux-kernel" class="md-nav__link">
+    Build Linux Kernel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="mips-setup">MIPS Setup<a class="headerlink" href="#mips-setup" title="Permanent link">&para;</a></h1>
+<h2 id="build-cross-compile-toolchains">Build cross-compile Toolchains<a class="headerlink" href="#build-cross-compile-toolchains" title="Permanent link">&para;</a></h2>
+<p>We recommand use <a href="https://github.com/crosstool-ng/crosstool-ng">crosstool-NG</a>.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/crosstool-ng/crosstool-ng
+<span class="nb">pushd</span><span class="w"> </span>crosstool-ng
+<span class="w">    </span>./bootstrap
+<span class="w">    </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/opt/ct-ng
+<span class="w">    </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>/opt/ct-ng
+<span class="w">    </span>./configure<span class="w"> </span>--prefix<span class="o">=</span>/opt/ct-ng
+<span class="w">    </span>make<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span>
+<span class="w">    </span>make<span class="w"> </span>install
+<span class="w">    </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/ct-ng/bin:<span class="nv">$PATH</span>
+<span class="nb">popd</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/opt/mips32
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>/opt/mips32
+<span class="nb">pushd</span><span class="w"> </span>/opt/mips32
+<span class="w">    </span>ct-ng<span class="w"> </span>mipsel-unknown-linux-gnu
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/CT_ARCH_ARCH=&quot;mips1&quot;/CT_ARCH_ARCH=&quot;mips32&quot;/g&#39;</span><span class="w"> </span>.config
+<span class="w">    </span>ct-ng<span class="w"> </span>build
+<span class="w">    </span><span class="c1"># Now, toolchains available at `/opt/mips32/.build/mipsel-unknown-linux-gnu/buildtools/bin`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$HOME</span><span class="s2">/x-tools/mipsel-unknown-linux-gnu/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="w">    </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<span class="w">    </span><span class="c1"># Replace .bashrc if you are using some shells other than bash, such as .zshrc for zsh.</span>
+<span class="nb">popd</span>
+</code></pre></div>
+<h2 id="ucore-boot">uCore boot<a class="headerlink" href="#ucore-boot" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/ucore-thumips.git
+<span class="nb">pushd</span><span class="w"> </span>ucore-thumips
+<span class="w">    </span>make<span class="w"> </span><span class="nv">GCCPREFIX</span><span class="o">=</span>mipsel-unknown-linux-gnu-
+<span class="nb">popd</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/cemu.git
+<span class="nb">pushd</span><span class="w"> </span>cemu
+</code></pre></div>
+<p>Save the following file to <code>cemu/src/main.cpp</code></p>
+<div class="highlight"><span class="filename">src/main.cpp</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bitset&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;termios.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mips_core.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nscscc_confreg.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;memory_bus.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ram.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;uart8250.hpp&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">uart_input</span><span class="p">(</span><span class="n">uart8250</span><span class="w"> </span><span class="o">&amp;</span><span class="n">uart</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">termios</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">STDIN_FILENO</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tmp</span><span class="p">.</span><span class="n">c_lflag</span><span class="w"> </span><span class="o">&amp;=</span><span class="p">(</span><span class="o">~</span><span class="n">ICANON</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">~</span><span class="n">ECHO</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">STDIN_FILENO</span><span class="p">,</span><span class="n">TCSANOW</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getchar</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w"> </span><span class="c1">// convert lf to cr</span>
+<span class="w">        </span><span class="n">uart</span><span class="p">.</span><span class="n">putc</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">send_ctrl_c</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">sigint_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">time_t</span><span class="w"> </span><span class="n">last_time</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">send_ctrl_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">ucore_run</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">sigint_handler</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">memory_bus</span><span class="w"> </span><span class="n">cemu_mmio</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">ram</span><span class="w"> </span><span class="n">cemu_memory</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;../ucore-thumips/obj/ucore-kernel-initrd.bin&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">cemu_mmio</span><span class="p">.</span><span class="n">add_dev</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cemu_memory</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// uart8250 at 0x1fe40000 (APB)</span>
+<span class="w">    </span><span class="n">uart8250</span><span class="w"> </span><span class="n">uart</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="o">*</span><span class="n">uart_input_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">uart_input</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">uart</span><span class="p">));</span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">cemu_mmio</span><span class="p">.</span><span class="n">add_dev</span><span class="p">(</span><span class="mh">0x1fe40000</span><span class="p">,</span><span class="mh">0x10000</span><span class="p">,</span><span class="o">&amp;</span><span class="n">uart</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">mips_core</span><span class="w"> </span><span class="n">mips</span><span class="p">(</span><span class="n">cemu_mmio</span><span class="p">);</span>
+<span class="w">    </span><span class="n">mips</span><span class="p">.</span><span class="n">jump</span><span class="p">(</span><span class="mh">0x80000000u</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">lastpc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">delay_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mips</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">uart</span><span class="p">.</span><span class="n">irq</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">uart</span><span class="p">.</span><span class="n">exist_tx</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uart</span><span class="p">.</span><span class="n">getc</span><span class="p">();</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\r&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">delay_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">delay_cr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+<span class="w">                </span><span class="n">delay_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">send_ctrl_c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">uart</span><span class="p">.</span><span class="n">putc</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">            </span><span class="n">send_ctrl_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ucore_run</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>at<span class="w"> </span>cemu<span class="w"> </span>project<span class="w"> </span>folder
+<span class="go">make</span>
+<span class="go">./cemu</span>
+<span class="go">++setup timer interrupts</span>
+<span class="go">Initrd: 0x8006aa50 - 0x800c224f, size: 0x00057800, magic: 0x2f8dbe2a</span>
+<span class="gp gp-VirtualEnv">(THU.CST)</span> <span class="go">os is loading ...</span>
+
+<span class="go">Special kernel symbols:</span>
+<span class="go">  entry  0x80000108 (phys)</span>
+<span class="go">  etext 0x8002B400 (phys)</span>
+<span class="go">  edata 0x800C2250 (phys)</span>
+<span class="go">  end   0x800C5570 (phys)</span>
+<span class="go">Kernel executable memory footprint: 617KB</span>
+<span class="go">memory management: buddy_pmm_manager</span>
+<span class="go">memory map:</span>
+<span class="go">    [80000000, 82000000]</span>
+
+<span class="go">freemem start at: 80106000</span>
+<span class="go">free pages: 00001EFA</span>
+<span class="gp">#</span><span class="c1"># 00000020</span>
+<span class="go">check_alloc_page() succeeded!</span>
+<span class="go">check_pgdir() succeeded!</span>
+<span class="go">check_boot_pgdir() succeeded!</span>
+<span class="go">-------------------- BEGIN --------------------</span>
+<span class="go">--------------------- END ---------------------</span>
+<span class="go">check_slab() succeeded!</span>
+<span class="go">kmalloc_init() succeeded!</span>
+<span class="go">check_vma_struct() succeeded!</span>
+<span class="go">check_pgfault() succeeded!</span>
+<span class="go">check_vmm() succeeded.</span>
+<span class="go">sched class: RR_scheduler</span>
+<span class="go">ramdisk_init(): initrd found, magic: 0x2f8dbe2a, 0x000002bc secs</span>
+<span class="go">sfs: mount: &#39;simple file system&#39; (81/6/87)</span>
+<span class="go">vfs: mount disk0.</span>
+<span class="go">kernel_execve: pid = 2, name = &quot;sh&quot;.</span>
+<span class="go">user sh is running!!!</span>
+<span class="gp">$ </span>
+</code></pre></div>
+<h2 id="linux-boot">Linux boot<a class="headerlink" href="#linux-boot" title="Permanent link">&para;</a></h2>
+<h3 id="build-busybox-and-prepare-rootfs">Build Busybox and prepare rootfs<a class="headerlink" href="#build-busybox-and-prepare-rootfs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mirror/busybox.git
+<span class="nb">pushd</span><span class="w"> </span>busybox
+<span class="w">    </span>make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>mips<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>defconfig
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g&#39;</span><span class="w"> </span>.config
+<span class="w">    </span><span class="c1"># Note: If you don&#39;t want static build, you need to copy the entire ~/x-tools/mipsel-unknown-linux-gnu/mipsel-unknown-linux-gnu/sysroot/ to your rootfs, it will be too huge for initrd by default</span>
+<span class="w">    </span>make<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span>
+<span class="w">    </span>make<span class="w"> </span>install
+<span class="nb">popd</span><span class="w"> </span>busybox
+mkdir<span class="w"> </span>rootfs
+<span class="nb">pushd</span><span class="w"> </span>rootfs
+<span class="w">    </span>sudo<span class="w"> </span>rsync<span class="w"> </span>-ar<span class="w"> </span>../busybox/_install/*<span class="w"> </span>.
+<span class="w">    </span>sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>*<span class="w"> </span>-R
+<span class="w">    </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>proc<span class="w"> </span>sys<span class="w"> </span>dev<span class="w"> </span>etc/init.d
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">622</span><span class="w"> </span>dev/console<span class="w"> </span>c<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">666</span><span class="w"> </span>dev/null<span class="w"> </span>c<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span>
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">666</span><span class="w"> </span>dev/zero<span class="w"> </span>c<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span>
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">666</span><span class="w"> </span>dev/ptmx<span class="w"> </span>c<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">666</span><span class="w"> </span>dev/tty<span class="w"> </span>c<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">444</span><span class="w"> </span>dev/random<span class="w"> </span>c<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">8</span>
+<span class="w">    </span>sudo<span class="w"> </span>mknod<span class="w"> </span>-m<span class="w"> </span><span class="m">444</span><span class="w"> </span>dev/urandom<span class="w"> </span>c<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">9</span>
+<span class="w">    </span>sudo<span class="w"> </span>chown<span class="w"> </span>root:tty<span class="w"> </span>dev/<span class="o">{</span>console,ptmx,tty<span class="o">}</span>
+<span class="w">    </span>sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;#!/bin/sh\nmount -t proc none /proc\nmount -t sysfs none /sys\nln -s /dev/null /dev/tty2\nln -s /dev/null /dev/tty3\nln -s /dev/null /dev/tty4\nexit 0&quot; &gt; etc/init.d/rcS&#39;</span>
+<span class="w">    </span>sudo<span class="w"> </span>chmod<span class="w"> </span>a+x<span class="w"> </span>etc/init.d/rcS
+<span class="nb">popd</span>
+</code></pre></div>
+<h3 id="build-linux-kernel">Build Linux Kernel<a class="headerlink" href="#build-linux-kernel" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/linux.git<span class="w"> </span>-b<span class="w"> </span>cdim_soc
+<span class="nb">pushd</span><span class="w"> </span>linux
+<span class="w">    </span>make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>mips<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>cdim_defconfig
+<span class="w">    </span><span class="c1"># Disable axi intc and axi emaclite in device-tree</span>
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/status = &quot;okay&quot;/status = &quot;disabled&quot;/g&#39;</span><span class="w"> </span>arch/mips/boot/dts/nscscc/cdim.dts
+<span class="w">    </span>make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>mips<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>mipsel-unknown-linux-gnu-<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span>
+<span class="w">    </span>mipsel-unknown-linux-gnu-objcopy<span class="w"> </span>-O<span class="w"> </span>binary<span class="w"> </span>vmlinux<span class="w"> </span>vmlinux.bin
+<span class="nb">popd</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cyyself/cemu.git
+<span class="nb">pushd</span><span class="w"> </span>cemu
+</code></pre></div>
+<p>Save the following file to <code>cemu/src/main.cpp</code></p>
+<div class="highlight"><span class="filename">src/main.cpp</span><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bitset&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;termios.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mips_core.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nscscc_confreg.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;memory_bus.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ram.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;uart8250.hpp&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">uart_input</span><span class="p">(</span><span class="n">uart8250</span><span class="w"> </span><span class="o">&amp;</span><span class="n">uart</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">termios</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">STDIN_FILENO</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tmp</span><span class="p">.</span><span class="n">c_lflag</span><span class="w"> </span><span class="o">&amp;=</span><span class="p">(</span><span class="o">~</span><span class="n">ICANON</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">~</span><span class="n">ECHO</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">STDIN_FILENO</span><span class="p">,</span><span class="n">TCSANOW</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getchar</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w"> </span><span class="c1">// convert lf to cr</span>
+<span class="w">        </span><span class="n">uart</span><span class="p">.</span><span class="n">putc</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">send_ctrl_c</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">sigint_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">time_t</span><span class="w"> </span><span class="n">last_time</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">send_ctrl_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">linux_run</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">sigint_handler</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">memory_bus</span><span class="w"> </span><span class="n">cemu_mmio</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">ram</span><span class="w"> </span><span class="n">cemu_memory</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cemu_memory</span><span class="p">.</span><span class="n">load_binary</span><span class="p">(</span><span class="mh">0x100000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;../linux/vmlinux.bin&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">cemu_mmio</span><span class="p">.</span><span class="n">add_dev</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cemu_memory</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// uart8250 at 0x1fe40000 (APB)</span>
+<span class="w">    </span><span class="n">uart8250</span><span class="w"> </span><span class="n">uart</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="o">*</span><span class="n">uart_input_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">uart_input</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">uart</span><span class="p">));</span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">cemu_mmio</span><span class="p">.</span><span class="n">add_dev</span><span class="p">(</span><span class="mh">0x1fe40000</span><span class="p">,</span><span class="mh">0x10000</span><span class="p">,</span><span class="o">&amp;</span><span class="n">uart</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">mips_core</span><span class="w"> </span><span class="n">mips</span><span class="p">(</span><span class="n">cemu_mmio</span><span class="p">);</span>
+<span class="w">    </span><span class="n">mips</span><span class="p">.</span><span class="n">jump</span><span class="p">(</span><span class="mh">0x80100000u</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">lastpc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">delay_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mips</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">uart</span><span class="p">.</span><span class="n">irq</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">uart</span><span class="p">.</span><span class="n">exist_tx</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uart</span><span class="p">.</span><span class="n">getc</span><span class="p">();</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\r&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">delay_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">delay_cr</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+<span class="w">                </span><span class="n">delay_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">send_ctrl_c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">uart</span><span class="p">.</span><span class="n">putc</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">            </span><span class="n">send_ctrl_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">linux_run</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>at<span class="w"> </span>cemu<span class="w"> </span>project<span class="w"> </span>folder
+<span class="go">make</span>
+<span class="go">./cemu                                                                             </span>
+<span class="go">[    0.000000] Linux version 6.3.0-13467-g75fb980ad88e-dirty (cyy@cyy-pc) (mipsel-unknown-linux-gnu-gcc (crosstool-NG 1.25.0.166_9433647) 12.2.0, GNU ld (crosstool-NG 1.25.0.166_9433647) 2.40) #16 Mon May  8 00:56:24 CST 2023</span>
+<span class="go">[    0.000000] printk: bootconsole [early0] enabled</span>
+<span class="go">[    0.000000] CPU0 revision is: 00018003 (MIPS 4Kc)</span>
+<span class="go">[    0.000000] MIPS: machine is nscscc,CQU_Dual_Issue_Machine</span>
+<span class="go">[    0.000000] Malformed early option &#39;earlycon&#39;</span>
+<span class="go">[    0.000000] Initrd not found or empty - disabling initrd</span>
+<span class="go">[    0.000000] Primary instruction cache 8kB, VIPT, 2-way, linesize 64 bytes.</span>
+<span class="go">[    0.000000] Primary data cache 8kB, 2-way, VIPT, no aliases, linesize 64 bytes</span>
+<span class="go">[    0.000000] Zone ranges:</span>
+<span class="go">[    0.000000]   Normal   [mem 0x0000000000000000-0x0000000007ffffff]</span>
+<span class="go">[    0.000000] Movable zone start for each node</span>
+<span class="go">[    0.000000] Early memory node ranges</span>
+<span class="go">[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000007ffffff]</span>
+<span class="go">[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x0000000007ffffff]</span>
+<span class="go">[    0.000000] Kernel command line: console=ttyS0,115200n8 rdinit=/sbin/init earlycon</span>
+<span class="go">[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes, linear)</span>
+<span class="go">[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes, linear)</span>
+<span class="go">[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 32480</span>
+<span class="go">[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off</span>
+<span class="go">[    0.000000] Memory: 118096K/131072K available (7257K kernel code, 610K rwdata, 1096K rodata, 2484K init, 216K bss, 12976K reserved, 0K cma-reserved)</span>
+<span class="go">[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1</span>
+<span class="go">[    0.000000] NR_IRQS: 256</span>
+<span class="go">[    0.000000] arch_init_irq with ebase: 0x80000000</span>
+<span class="go">[    0.000000] clocksource: MIPS: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 57337813970 ns</span>
+<span class="go">[    0.000009] sched_clock: 32 bits at 33MHz, resolution 30ns, wraps every 64424509936ns</span>
+<span class="go">[    0.002404] Console: colour dummy device 80x25</span>
+<span class="go">[    0.002804] Calibrating delay loop... 33.15 BogoMIPS (lpj=66304)</span>
+<span class="go">[    0.052502] pid_max: default: 32768 minimum: 301</span>
+<span class="go">[    0.054988] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.055391] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.073476] cblist_init_generic: Setting adjustable number of callback queues.</span>
+<span class="go">[    0.073746] cblist_init_generic: Setting shift to 0 and lim to 1.</span>
+<span class="go">[    0.080127] devtmpfs: initialized</span>
+<span class="go">[    0.097662] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns</span>
+<span class="go">[    0.098119] futex hash table entries: 256 (order: -1, 3072 bytes, linear)</span>
+<span class="go">[    0.117142] NET: Registered PF_NETLINK/PF_ROUTE protocol family</span>
+<span class="go">[    0.155162] SCSI subsystem initialized</span>
+<span class="go">[    0.167799] clocksource: Switched to clocksource MIPS</span>
+<span class="go">[    0.306714] NET: Registered PF_INET protocol family</span>
+<span class="go">[    0.310480] IP idents hash table entries: 2048 (order: 2, 16384 bytes, linear)</span>
+<span class="go">[    0.323866] tcp_listen_portaddr_hash hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.324632] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)</span>
+<span class="go">[    0.325076] TCP established hash table entries: 1024 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.325755] TCP bind hash table entries: 1024 (order: 1, 8192 bytes, linear)</span>
+<span class="go">[    0.326501] TCP: Hash tables configured (established 1024 bind 1024)</span>
+<span class="go">[    0.327416] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.328059] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)</span>
+<span class="go">[    0.329948] NET: Registered PF_UNIX/PF_LOCAL protocol family</span>
+<span class="go">[    0.334508] RPC: Registered named UNIX socket transport module.</span>
+<span class="go">[    0.334752] RPC: Registered udp transport module.</span>
+<span class="go">[    0.334971] RPC: Registered tcp transport module.</span>
+<span class="go">[    0.335190] RPC: Registered tcp NFSv4.1 backchannel transport module.</span>
+<span class="go">[    0.364317] workingset: timestamp_bits=14 max_order=15 bucket_order=1</span>
+<span class="go">[    0.374149] NFS: Registering the id_resolver key type</span>
+<span class="go">[    0.374893] Key type id_resolver registered</span>
+<span class="go">[    0.375109] Key type id_legacy registered</span>
+<span class="go">[    0.375614] nfs4filelayout_init: NFSv4 File Layout Driver Registering...</span>
+<span class="go">[    0.375983] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...</span>
+<span class="go">[    0.376492] fuse: init (API version 7.38)</span>
+<span class="go">[    0.383223] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 254)</span>
+<span class="go">[    0.383516] io scheduler mq-deadline registered</span>
+<span class="go">[    0.383750] io scheduler kyber registered</span>
+<span class="go">[    1.693393] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled</span>
+<span class="go">[    1.734751] printk: console [ttyS0] disabled</span>
+<span class="go">[    1.735135] 1fe40000.serial: ttyS0 at MMIO 0x1fe40000 (irq = 3, base_baud = 6250000) is a 16550A</span>
+<span class="go">[    1.735707] printk: console [ttyS0] enabled</span>
+<span class="go">[    1.735707] printk: console [ttyS0] enabled</span>
+<span class="go">[    1.736247] printk: bootconsole [early0] disabled</span>
+<span class="go">[    1.736247] printk: bootconsole [early0] disabled</span>
+<span class="go">[    1.753251] NET: Registered PF_INET6 protocol family</span>
+<span class="go">[    1.789533] Segment Routing with IPv6</span>
+<span class="go">[    1.791205] In-situ OAM (IOAM) with IPv6</span>
+<span class="go">[    1.792675] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver</span>
+<span class="go">[    1.801848] NET: Registered PF_PACKET protocol family</span>
+<span class="go">[    1.803474] Key type dns_resolver registered</span>
+<span class="go">[    2.182276] Key type .fscrypt registered</span>
+<span class="go">[    2.182572] Key type fscrypt-provisioning registered</span>
+<span class="go">[    2.193653] clk: Disabling unused clocks</span>
+<span class="go">[    3.596393] Freeing unused kernel image (initmem) memory: 2484K</span>
+<span class="go">[    3.596670] This architecture does not have kernel memory protection.</span>
+<span class="go">[    3.596976] Run /sbin/init as init process</span>
+
+<span class="go">Please press Enter to activate this console. </span>
+<span class="go">~ # </span>
+</code></pre></div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 5, 2024</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      CC BY-SA 4.0.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+        <script src="../../assets/javascripts/mmrls.js"></script>
+      
+    
+  </body>
+</html>
